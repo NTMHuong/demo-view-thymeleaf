@@ -26,27 +26,25 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public void update(int id, Customer customer) {
-        customers.set(id, customer);
+        int index = findCustomerById(id);
+        customers.set(index, customer);
     }
 
     @Override
     public void delete(int id) {
-        customers.remove(id);
+        int index = findCustomerById(id);
+        customers.remove(index);
 
     }
 
     @Override
     public Customer findById(int id) {
-        for (Customer customer : customers) {
-            if (customer.getId() == id) {
-                return customer;
-            }
-        }
-        return null;
+        int index = findCustomerById(id);
+        return customers.get(index);
     }
 
     @Override
-    public int findByIdCustomer(int id) {
+    public int findCustomerById(int id) {
         int index = -1;
         for (int i = 0; i < customers.size(); i++) {
             if(customers.get(i).getId() == id) {
@@ -55,5 +53,16 @@ public class CustomerService implements ICustomerService{
             }
         }
         return index;
+    }
+
+    @Override
+    public List<Customer> findByName(String name) {
+        List<Customer> newCustomers = new ArrayList<>();
+        for (Customer customer : customers) {
+            if (customer.getName().contains(name)) {
+                newCustomers.add(customer);
+            }
+        }
+        return newCustomers;
     }
 }

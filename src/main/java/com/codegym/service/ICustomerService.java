@@ -3,6 +3,7 @@ package com.codegym.service;
 import com.codegym.model.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ICustomerService {
     List<Customer> getAll();
@@ -15,6 +16,7 @@ public interface ICustomerService {
 
     Customer findById(int id);
 
-    int findByIdCustomer(int id);
+    int findCustomerById(int id);
 
+    List<Customer> findByName(String name);
 }

@@ -1,5 +1,7 @@
 package com.codegym.config;
 
+import com.codegym.service.CustomerService;
+import com.codegym.service.ICustomerService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +54,9 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return viewResolver;
     }
 
-
-
+    @Bean
+    public ICustomerService CustomerService() {
+        return new CustomerService();
+    }
 
 }
